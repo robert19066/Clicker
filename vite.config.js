@@ -17,4 +17,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  preview: {
+    host: true,
+    port: 4173,
+    allowedHosts: ['casual-vue-clicker.onrender.com']
+  }
 })
