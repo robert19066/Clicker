@@ -12,8 +12,8 @@ import DataManager from './components/DataManager.vue';
     <ClickerButton />
     <UpgradePanel />
     <DataManager />
-    <h4><a href="https://github.com/robert19066/Clicker" target="_blank">Open Repository</a></h4>
+    <h4 style="text-align: center"><a href="https://github.com/robert19066/Clicker" target="_blank">Open Repository</a></h4>
     <h6 style="color: #ccc; text-align: center;">Made using Vue - Any forks will be accepted!</h6>
-    <h6><strong>Special thanks to Vue.js community!</strong></h6>
+    <h6 style="text-align: center"><strong>Special thanks to Vue.js community!</strong></h6>
   </div>
 </template>
