@@ -6,9 +6,9 @@ import DataManager from './components/DataManager.vue';
 
 <template>
   <div class="app-container">
-    <h1 style="color: #eee; text-align: center;">Casual Vue Clicker</h1>
+    <h1 style="color: #eee; text-align: center;">Casual Vue Clicker V2.1</h1>
     <h6 style="color: #ccc; text-align: center;">Made with love by <a href="https://github.com/robert19066" target="_blank">robert19066</a></h6>
-    <p>Welcome to the Casual Vue Clicker game! Click the button to earn points and upgrade your abilities.</p>
+    <p style="text-align: center;">Welcome to the Casual Vue Clicker game! Click the button to earn points and upgrade your abilities.</p>
     <ClickerButton />
     <UpgradePanel />
     <DataManager />
