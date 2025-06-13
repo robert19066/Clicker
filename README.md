@@ -1,29 +1,7 @@
-# clicker
+# Casual Vue Clicker Source
 
-This template should help get you started developing with Vue 3 in Vite.
+<p>Well guys this is the github repository of Casual Vue Clicker,my first project using Vue.js.</p>
+Wonderfull tool ngl.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+# Thank you Vue.js staff that you made this incredible web framework
+<p>ps: it would e nightmare if i used react lol :/</p>
