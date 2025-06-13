@@ -1,44 +1,29 @@
-<<script setup>
-import { ref } from 'vue';
-import CryptoJS from 'crypto-js';
+
+<script setup>
 import { store } from '../store.js';
-
-const encryptionKey = ref(generateRandomKey());
-
-function generateRandomKey() {
-  return CryptoJS.lib.WordArray.random(16).toString();
-}
 
 const exportData = () => {
   const data = JSON.stringify({
-    clickCount: store.clickCount.value,
-    upgradeAmount: store.upgradeAmount.value,
-    upgradeCost: store.upgradeCost.value,
-    autoClickLevel: store.autoClickLevel.value,
-    autoClickCPS: store.autoClickCPS.value,
-    rank: store.rank.value,
+    clickCount: store.clickCount,
+    upgradeAmount: store.upgradeAmount,
+    upgradeCost: store.upgradeCost,
+    autoClickLevel: store.autoClickLevel,
+    autoClickCPS: store.autoClickCPS,
+    rank: store.rank,
   });
 
-  const encryptedData = CryptoJS.AES.encrypt(data, encryptionKey.value).toString();
-  const blob = new Blob([encryptedData], { type: 'application/json' });
+  // Encode JSON string to Base64
+  const base64Data = btoa(unescape(encodeURIComponent(data)));
+
+  const blob = new Blob([base64Data], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
 
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'game_data.json';
+  a.download = 'game_data.b64.json';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-
-  // Save key
-  const keyBlob = new Blob([encryptionKey.value], { type: 'text/plain' });
-  const keyUrl = URL.createObjectURL(keyBlob);
-  const keyFile = document.createElement('a');
-  keyFile.href = keyUrl;
-  keyFile.download = 'encryption_key.txt';
-  document.body.appendChild(keyFile);
-  keyFile.click();
-  document.body.removeChild(keyFile);
 };
 
 const importData = (event) => {
@@ -47,26 +32,25 @@ const importData = (event) => {
 
   const reader = new FileReader();
   reader.onload = (e) => {
-    const userKey = prompt('Enter your encryption key:');
-    if (!userKey) return alert('Invalid key!');
-
     try {
-      const decryptedData = CryptoJS.AES.decrypt(e.target.result, userKey).toString(CryptoJS.enc.Utf8);
-      const parsedData = JSON.parse(decryptedData);
+      // Decode Base64 string back to JSON
+      const decodedData = decodeURIComponent(escape(atob(e.target.result)));
+      const parsedData = JSON.parse(decodedData);
 
-      store.clickCount.value = parsedData.clickCount ?? 0;
-      store.upgradeAmount.value = parsedData.upgradeAmount ?? 1;
-      store.upgradeCost.value = parsedData.upgradeCost ?? 10;
-      store.autoClickLevel.value = parsedData.autoClickLevel ?? 0;
-      store.autoClickCPS.value = parsedData.autoClickCPS ?? 0;
+      store.clickCount = parsedData.clickCount ?? 0;
+      store.upgradeAmount = parsedData.upgradeAmount ?? 1;
+      store.upgradeCost = parsedData.upgradeCost ?? 10;
+      store.autoClickLevel = parsedData.autoClickLevel ?? 0;
+      store.autoClickCPS = parsedData.autoClickCPS ?? 0;
       // rank is computed so no need to restore
     } catch {
-      alert('Failed to decrypt file. Incorrect key!');
+      alert('Failed to decode the file. Make sure it is a valid Base64 encoded JSON.');
     }
   };
   reader.readAsText(file);
 };
 </script>
+
 
 <template>
   <div class="data-manager">

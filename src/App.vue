@@ -24,7 +24,7 @@ onUnmounted(() => {
 
 <template>
   <div class="app-container">
-    <h1 style="color: #eee; text-align: center;">Casual Vue Clicker V2.3 LATEST</h1>
+    <h1 style="color: #eee; text-align: center;">Casual Vue Clicker V2.4 LATEST</h1>
     <h6 style="color: #ccc; text-align: center;">
       Made with love by
       <a href="https://github.com/robert19066" target="_blank">robert19066</a>
@@ -32,6 +32,7 @@ onUnmounted(() => {
     <p style="text-align: center;">
       Welcome to the Casual Vue Clicker game! Click the button to earn points and upgrade your abilities.
     </p>
+    
     <ClickerButton />
     <UpgradePanel />
     <DataManager />
@@ -39,6 +40,10 @@ onUnmounted(() => {
       <a href="https://github.com/robert19066/Clicker" target="_blank">Open Repository</a>
     </h4>
     <h6 style="color: #ccc; text-align: center;">Made using Vue - Any forks will be accepted!</h6>
+    <h6 style="text-align: center;">Change Log(V2.4):</h6>
+    <ul style="text-align: center;">
+      <li style="text-align: center;">Fixed the import data bug with the encryption key</li>
+    </ul>
     <h6 style="text-align: center"><strong>Special thanks to Vue.js community!</strong></h6>
   </div>
 </template>
